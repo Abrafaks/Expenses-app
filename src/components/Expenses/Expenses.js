@@ -3,37 +3,12 @@ import Card from "../../UI/Card.js";
 
 import "./Expenses.css";
 
-function Expenses() {
-  const expenses = [
-    {
-      id: "e1",
-      title: "Car insurance",
-      amount: 294.12,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e2",
-      title: "Car insurance",
-      amount: 294.12,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e3",
-      title: "Car insurance",
-      amount: 294.12,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e4",
-      title: "xd",
-      amount: 294.12,
-      date: new Date(2021, 2, 28),
-    },
-  ];
-
+function Expenses(props) {
+  const { expenses } = props;
   const expensesList = expenses.map((expense) => {
     return (
       <ExpenseItem
+        key={Math.random().toString()}
         title={expense.title}
         amount={expense.amount}
         date={expense.date}
