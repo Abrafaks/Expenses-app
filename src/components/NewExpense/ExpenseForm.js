@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
+  const [displayForm, setDisplayForm] = useState(false);
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
@@ -33,9 +34,15 @@ function ExpenseForm(props) {
     setAmount("");
     setDate("");
     setTitle("");
+    setDisplayForm(false);
   };
 
-  return (
+  const toggleAddExpenseForm = () => {
+    setDisplayForm((prevDisplayForm) => !prevDisplayForm);
+    console.log(displayForm);
+  };
+
+  const form = (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
@@ -64,10 +71,17 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={toggleAddExpenseForm}>Cancel</button>
         <button type="submit">Add expense</button>
       </div>
     </form>
   );
+
+  const addNewExpenseButton = (
+    <button onClick={toggleAddExpenseForm}>Add new expense</button>
+  );
+
+  return <div>{displayForm ? form : addNewExpenseButton}</div>;
 }
 
 export default ExpenseForm;
